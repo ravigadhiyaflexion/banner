@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebookF, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const SocialButton = ({ platform, onClick }) => {
     let icon;
@@ -13,6 +13,9 @@ const SocialButton = ({ platform, onClick }) => {
             break;
         case 'linkedin':
             icon = <FontAwesomeIcon icon={faLinkedinIn} />;
+            break;
+        case 'twitter':
+            icon = <FontAwesomeIcon icon={faXTwitter} />;
             break;
         default:
             icon = null;

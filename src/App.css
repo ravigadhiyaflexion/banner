@@ -5,8 +5,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: url('../src/bg_mobile.svg');
-  background-size: cover;
+  background-image: url('../src/bg_mobile.png');
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #fff;
@@ -32,7 +32,7 @@
 .clock_content h1 {
   color: var(--white-color);
   font-size: 3;
-  font-weight: 600;
+  font-weight: 500;
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -79,6 +79,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
+  margin-top: 2px;
   height: 75px;
   width: 75px;
 }
@@ -111,7 +112,16 @@
 
 .countdownCircleTimer .time-wrapper {
   color: black;
+  font-size: 25px;
+  font-family: 'Inter', sans-serif;
 }
+
+.countdownCircleTimer .time-wrapper div {
+  color: black;
+  font-size: 28px;
+  font-family: 'Inter', sans-serif;
+}
+
 
 .button {
   width: 140px;
@@ -124,7 +134,7 @@
   border-radius: 12px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
-  cursor: pointer;
+  /* cursor: pointer; */
   outline: none;
 }
 
@@ -159,7 +169,8 @@
   border-radius: 50px;
   border: none;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  background-color: rgba(28, 187, 251, 0.8);
+  background-color: #1cbcfb34;
+  color: #079EDB;
 }
 
 .social-decoration .social-icons svg:hover {
@@ -222,12 +233,20 @@
 
   .countdownCircleTimer .time-wrapper {
     color: black;
+    font-size: 36px;
+    font-family: 'Inter', sans-serif;
   }
 
   .countdownCircleTimer .testing {
     display: flex;
     justify-content: center;
     gap: 12px;
+    height: 110px;
+    width: 110px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .countdownCircleTimer .testing svg {
@@ -242,6 +261,7 @@
     align-items: center;
     width: 60%;
     margin-bottom: 30px;
+    margin-top: 40px;
     height: 40px;
     border-bottom: 2px solid #000;
     outline: none;
@@ -259,15 +279,11 @@
   }
 
   .container {
-    width: 100vw;
     height: 100vh;
-    display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    background-image: url('../src/bg.svg');
-    background-size: cover;
-    background-position: center;
+    background-image: url('../src/bg.png');
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: #fff;
   }

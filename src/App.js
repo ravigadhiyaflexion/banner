@@ -5,6 +5,7 @@ import './App.css';
 import SocialButton from './SocialButton';
 import Loading from './Loading';
 import { motion } from "framer-motion";
+import { useMediaQuery } from 'react-responsive'
 
 
 const minuteSeconds = 60;
@@ -18,10 +19,11 @@ const timerProps = {
 };
 
 const renderTime = (dimension, time) => {
+  const formattedTime = time < 10 ? `0${time}` : time;
   return (
     <div className="time-wrapper">
-      <div className="time">{time}</div>
-      <div>{dimension}</div>
+      <div className="time">{formattedTime}</div>
+      {/* <div>{dimension}</div> */}
     </div>
   );
 };
@@ -35,6 +37,7 @@ function App() {
   const [loading, setLoading] = useState(true); // State to manage loading status
 
   const [endTime, setEndTime] = useState(getEndOfDay());
+  const Mobile = useMediaQuery({ query: '(max-width: 428px)' })
 
   function getEndOfDay() {
     const now = new Date();
@@ -71,6 +74,9 @@ function App() {
       case 'linkedin':
         window.open('https://www.linkedin.com/', '_blank');
         break;
+      case 'twitter':
+        window.open('https://www.twitter.com/', '_blank');
+        break;
       default:
         break;
     }
@@ -99,8 +105,9 @@ function App() {
           }}
           viewport={{ once: true }}
         >
-          <SocialButton platform="instagram" onClick={handleClick} />
           <SocialButton platform="facebook" onClick={handleClick} />
+          <SocialButton platform="instagram" onClick={handleClick} />
+          <SocialButton platform="twitter" onClick={handleClick} />
           <SocialButton platform="linkedin" onClick={handleClick} />
         </motion.div>
         <motion.div className="clock_content"
@@ -108,69 +115,80 @@ function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 style={{ color: '#079EDB' }}>Our site Under Maintenance</h1>
+          {Mobile ? <h1 style={{ color: '#079EDB' }}>Our site <br />Under Maintenance</h1> : <h1 style={{ color: '#079EDB' }}>Our site Under Maintenance</h1>}
           <h3 style={{ color: '#000000' }}>Our awesome new web is very coming soon.<br />
             We will get back as soon as possible</h3>
           <div className='countdownCircleTimer'>
             <div className='testing'>
-              <CountdownCircleTimer
-                {...timerProps}
-                colors="#079EDB"
-                duration={daysDuration}
-                initialRemainingTime={remainingTime}
-              >
-                {({ elapsedTime, color }) => (
-                  <span style={{ color }}>
-                    {renderTime("days", getTimeDays(daysDuration - elapsedTime))}
-                  </span>
-                )}
-              </CountdownCircleTimer>
-
-              <CountdownCircleTimer
-                {...timerProps}
-                colors="#079EDB"
-                duration={daySeconds}
-                initialRemainingTime={remainingTime % daySeconds}
-                onComplete={(totalElapsedTime) => ({
-                  shouldRepeat: remainingTime - totalElapsedTime > hourSeconds
-                })}
-              >
-                {({ elapsedTime, color }) => (
-                  <span style={{ color }}>
-                    {renderTime("hours", getTimeHours(daySeconds - elapsedTime))}
-                  </span>
-                )}
-              </CountdownCircleTimer>
-              <CountdownCircleTimer
-                {...timerProps}
-                colors="#079EDB"
-                duration={hourSeconds}
-                initialRemainingTime={remainingTime % hourSeconds}
-                onComplete={(totalElapsedTime) => ({
-                  shouldRepeat: remainingTime - totalElapsedTime > minuteSeconds
-                })}
-              >
-                {({ elapsedTime, color }) => (
-                  <span style={{ color }}>
-                    {renderTime("minutes", getTimeMinutes(hourSeconds - elapsedTime))}
-                  </span>
-                )}
-              </CountdownCircleTimer>
-              <CountdownCircleTimer
-                {...timerProps}
-                colors="#079EDB"
-                duration={minuteSeconds}
-                initialRemainingTime={remainingTime % minuteSeconds}
-                onComplete={(totalElapsedTime) => ({
-                  shouldRepeat: remainingTime - totalElapsedTime > 0
-                })}
-              >
-                {({ elapsedTime, color }) => (
-                  <span style={{ color }}>
-                    {renderTime("seconds", getTimeSeconds(elapsedTime))}
-                  </span>
-                )}
-              </CountdownCircleTimer>
+              <div className='testing'>
+                <CountdownCircleTimer
+                  {...timerProps}
+                  colors="#079EDB"
+                  duration={daysDuration}
+                  initialRemainingTime={remainingTime}
+                >
+                  {({ elapsedTime, color }) => (
+                    <span style={{ color }}>
+                      {renderTime("days", getTimeDays(daysDuration - elapsedTime))}
+                    </span>
+                  )}
+                </CountdownCircleTimer>
+                <div style={{ fontFamily: 'Inter', marginTop: '8px' }}>{"Days"}</div>
+              </div>
+              <div className='testing'>
+                <CountdownCircleTimer
+                  {...timerProps}
+                  colors="#079EDB"
+                  duration={daySeconds}
+                  initialRemainingTime={remainingTime % daySeconds}
+                  onComplete={(totalElapsedTime) => ({
+                    shouldRepeat: remainingTime - totalElapsedTime > hourSeconds
+                  })}
+                >
+                  {({ elapsedTime, color }) => (
+                    <span style={{ color }}>
+                      {renderTime("hours", getTimeHours(daySeconds - elapsedTime))}
+                    </span>
+                  )}
+                </CountdownCircleTimer>
+                <div style={{ fontFamily: 'Inter', marginTop: '8px' }}>{"Hours"}</div>
+              </div>
+              <div className='testing'>
+                <CountdownCircleTimer
+                  {...timerProps}
+                  colors="#079EDB"
+                  duration={hourSeconds}
+                  initialRemainingTime={remainingTime % hourSeconds}
+                  onComplete={(totalElapsedTime) => ({
+                    shouldRepeat: remainingTime - totalElapsedTime > minuteSeconds
+                  })}
+                >
+                  {({ elapsedTime, color }) => (
+                    <span style={{ color }}>
+                      {renderTime("minutes", getTimeMinutes(hourSeconds - elapsedTime))}
+                    </span>
+                  )}
+                </CountdownCircleTimer>
+                <div style={{ fontFamily: 'Inter', marginTop: '8px' }}>{"Minutes"}</div>
+              </div>
+              <div className='testing'>
+                <CountdownCircleTimer
+                  {...timerProps}
+                  colors="#079EDB"
+                  duration={minuteSeconds}
+                  initialRemainingTime={remainingTime % minuteSeconds}
+                  onComplete={(totalElapsedTime) => ({
+                    shouldRepeat: remainingTime - totalElapsedTime > 0
+                  })}
+                >
+                  {({ elapsedTime, color }) => (
+                    <span style={{ color }}>
+                      {renderTime("seconds", getTimeSeconds(elapsedTime))}
+                    </span>
+                  )}
+                </CountdownCircleTimer>
+                <div style={{ fontFamily: 'Inter', marginTop: '8px' }}>{"Seconds"}</div>
+              </div>
             </div>
           </div>
           <input type='text' className="email-input" placeholder="Type your email" />
