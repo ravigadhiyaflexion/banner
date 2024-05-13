@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '@leenguyen/react-flip-clock-countdown/dist/index.css';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import './App.css';
 import SocialButton from './SocialButton';
